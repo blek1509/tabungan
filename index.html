@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jurnal Tabungan By Ublek</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background: #4CAF50;
+            color: white;
+        }
+        input {
+            padding: 5px;
+            margin: 5px;
+        }
+        button {
+            padding: 8px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Jurnal Tabungan By Ublek</h2>
+
+Tanggal: <input type="date" id="tanggal"><br>
+Keterangan: <input type="text" id="keterangan"><br>
+Setor: <input type="number" id="setor"><br>
+Tarik: <input type="number" id="tarik"><br>
+<button onclick="tambahData()">Tambah</button>
+
+<br><br>
+
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Tanggal</th>
+            <th>Keterangan</th>
+            <th>Setor</th>
+            <th>Tarik</th>
+            <th>Saldo</th>
+        </tr>
+    </thead>
+    <tbody id="tabelData">
+    </tbody>
+</table>
+
+<script>
+let saldo = 0;
+let no = 1;
+
+function tambahData() {
+    let tanggal = document.getElementById("tanggal").value;
+    let keterangan = document.getElementById("keterangan").value;
+    let setor = parseInt(document.getElementById("setor").value) || 0;
+    let tarik = parseInt(document.getElementById("tarik").value) || 0;
+
+    saldo = saldo + setor - tarik;
+
+    let tabel = document.getElementById("tabelData");
+    let row = tabel.insertRow();
+
+    row.insertCell(0).innerHTML = no++;
+    row.insertCell(1).innerHTML = tanggal;
+    row.insertCell(2).innerHTML = keterangan;
+    row.insertCell(3).innerHTML = setor;
+    row.insertCell(4).innerHTML = tarik;
+    row.insertCell(5).innerHTML = saldo;
+
+    document.getElementById("tanggal").value = "";
+    document.getElementById("keterangan").value = "";
+    document.getElementById("setor").value = "";
+    document.getElementById("tarik").value = "";
+}
+</script>
+
+</body>
+</html>
